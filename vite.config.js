@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import hydrogen from '@shopify/hydrogen/plugin';
+import netlify from '@netlify/hydrogen-platform';
 
 export default defineConfig({
-  plugins: [hydrogen()],
+  plugins: [hydrogen(), netlify()],
   optimizeDeps: {
     include: [
       'react-i18next',
