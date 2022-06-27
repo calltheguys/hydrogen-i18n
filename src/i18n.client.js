@@ -12,7 +12,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: hydrogenConfig.defaultLanguage,
+    fallbackLng: hydrogenConfig.defaultLanguage.split('-')[0],
     debug: false,
     react: {useSuspense: true},
     ns: ['translation'],
