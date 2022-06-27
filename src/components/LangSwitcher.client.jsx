@@ -12,7 +12,6 @@ export function LangSwitcher() {
 
   const handleChange = useCallback((e) => {
     const selectedLang = e.target.value;
-    console.log('Setting active language to', selectedLang);
     setLang(selectedLang);
     i18n.changeLanguage(selectedLang);
   }, []);
