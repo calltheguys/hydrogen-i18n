@@ -8,11 +8,13 @@ import en from './assets/locales/en/translation.json';
 import es from './assets/locales/es/translation.json';
 import de from './assets/locales/de/translation.json';
 
+console.log('hydrogenConfig', hydrogenConfig);
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: hydrogenConfig.defaultLanguage.split('-')[0],
+    fallbackLng: hydrogenConfig?.defaultLanguage?.split('-')?.[0] || 'en',
     debug: false,
     react: {useSuspense: true},
     ns: ['translation'],
