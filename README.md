@@ -1,5 +1,7 @@
 # Hydrogen x react-i18n
 
+![hydrogen-i18n](https://user-images.githubusercontent.com/12080141/176011892-6e308dd2-31db-4094-ae07-b36824a61d12.gif)
+
 Hydrogen is a React framework and SDK that you can use to build fast and dynamic Shopify custom storefronts.
 
 [Check out the docs](https://shopify.dev/custom-storefronts/hydrogen)
