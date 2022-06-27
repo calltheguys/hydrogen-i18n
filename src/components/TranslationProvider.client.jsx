@@ -13,7 +13,7 @@ import de from '../assets/locales/de/translation.json';
 i18n.use(LanguageDetector).use(initReactI18next);
 
 export function TranslationProvider({children}) {
-  const {language} = useLocalization();
+  const {language, country} = useLocalization();
   const init = useRef(false);
   const [i18nInstance, setI18nInstance] = useState(null);
 
@@ -21,13 +21,17 @@ export function TranslationProvider({children}) {
     if (init.current) return;
 
     init.current = true;
+    const cachedLang = localStorage.getItem('i18nextLng');
     const defaultLang = language.isoCode.toLowerCase();
+
+    if (!cachedLang) {
+      localStorage.setItem('i18nextLng', defaultLang);
+    }
 
     i18n.init(
       {
-        lng: defaultLang,
         fallbackLng: defaultLang,
-        debug: true,
+        debug: false,
         react: {useSuspense: true},
         ns: ['translation'],
         defaultNS: 'translation',

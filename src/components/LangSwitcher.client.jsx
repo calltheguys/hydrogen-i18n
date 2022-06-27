@@ -1,4 +1,4 @@
-import {useEffect, useState, useRef} from 'react';
+import {useCallback, useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
 
 export function LangSwitcher() {
@@ -10,17 +10,11 @@ export function LangSwitcher() {
     {value: 'de', name: 'Deutsch', flag: '🇩🇪'},
   ]);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const selectedLang = e.target.value;
     console.log('Setting active language to', selectedLang);
     setLang(selectedLang);
     i18n.changeLanguage(selectedLang);
-  };
-
-  useEffect(() => {
-    const cachedLang = localStorage.getItem('i18nextLng');
-    console.log('Changing initial language from', lang, 'to', cachedLang);
-    setLang(cachedLang);
   }, []);
 
   return (
