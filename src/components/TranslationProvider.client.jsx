@@ -1,8 +1,54 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import {useLocalization} from '@shopify/hydrogen';
 import {I18nextProvider} from 'react-i18next';
+import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-import i18n from '../i18n.client';
+// i18n translations
+import en from '../assets/locales/en/translation.json';
+import es from '../assets/locales/es/translation.json';
+import de from '../assets/locales/de/translation.json';
+
+i18n.use(LanguageDetector).use(initReactI18next);
 
 export function TranslationProvider({children}) {
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+  const {language} = useLocalization();
+  const init = useRef(false);
+  const [i18nInstance, setI18nInstance] = useState(null);
+
+  useEffect(() => {
+    if (init.current) return;
+
+    init.current = true;
+    const defaultLang = language.isoCode.toLowerCase();
+
+    i18n.init(
+      {
+        lng: defaultLang,
+        fallbackLng: defaultLang,
+        debug: true,
+        react: {useSuspense: true},
+        ns: ['translation'],
+        defaultNS: 'translation',
+        interpolation: {
+          escapeValue: false, // not needed for react as it escapes by default
+        },
+        resources: {
+          en: {translation: en},
+          es: {translation: es},
+          de: {translation: de},
+        },
+      },
+      (err, t) => {
+        setI18nInstance(i18n);
+      }
+    );
+  }, [i18nInstance, language.isoCode]);
+
+  return (
+    i18nInstance && (
+      <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>
+    )
+  );
 }
