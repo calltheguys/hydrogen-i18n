@@ -16,7 +16,9 @@ export function LangSwitcher() {
   };
 
   useEffect(() => {
-    setLang(localStorage.getItem('i18nextLng'));
+    const cachedLang = localStorage.getItem('i18nextLng');
+    console.log('Changing initial language from', lang, 'to', cachedLang);
+    setLang(cachedLang);
   }, []);
 
   return (
