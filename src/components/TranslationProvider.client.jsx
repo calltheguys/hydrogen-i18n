@@ -13,7 +13,7 @@ import de from '../assets/locales/de/translation.json';
 i18n.use(LanguageDetector).use(initReactI18next);
 
 export function TranslationProvider({children}) {
-  const {language, country} = useLocalization();
+  const {language} = useLocalization();
   const init = useRef(false);
   const [i18nInstance, setI18nInstance] = useState(null);
 
@@ -28,6 +28,7 @@ export function TranslationProvider({children}) {
       localStorage.setItem('i18nextLng', defaultLang);
     }
 
+    // initialize i18next
     i18n.init(
       {
         fallbackLng: defaultLang,
@@ -44,7 +45,7 @@ export function TranslationProvider({children}) {
           de: {translation: de},
         },
       },
-      (err, t) => {
+      () => {
         setI18nInstance(i18n);
       }
     );
