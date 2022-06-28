@@ -10,17 +10,17 @@
     "preview": "shopify hydrogen preview"
   },
   "devDependencies": {
-    "@netlify/hydrogen-platform": "^1.0.0",
     "@shopify/cli": "latest",
     "@shopify/cli-hydrogen": "latest",
-    "i18next": "latest",
-    "i18next-browser-languagedetector": "latest",
-    "i18next-http-backend": "latest",
-    "react-i18next": "latest",
     "vite": "^2.9.0"
   },
   "dependencies": {
     "@shopify/hydrogen": "^1.0.2",
+    "i18next-resources-to-backend": "^1.0.0",
+    "i18next": "latest",
+    "i18next-browser-languagedetector": "latest",
+    "i18next-http-backend": "latest",
+    "react-i18next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
